@@ -14,7 +14,9 @@ export const Form = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: .5rem 3rem;
+  padding: 0.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 `;
 export const Header = styled.h1`
   font-size: ${(props) => (props.small ? "1.2rem" : "2.5rem")};
@@ -23,13 +25,13 @@ export const Header = styled.h1`
 export const FormInput = styled.input`
   width: 25rem;
   padding: 0.5rem 1rem;
-  border-bottom: 1px solid var(--color-dark);
+  border-bottom: none;
   border-top: none;
   border-left: none;
   border-right: none;
   margin: 1.5rem 0 0 0;
   font-size: 1.2rem;
-  background-color: ${(props) => (props.singlepost ? "transparent" :"")};
+  background-color: ${(props) => (props.singlepost ? "transparent" : "")};
   color: var(--color-secondary-dark);
   &::placeholder {
     font-weight: 500;
@@ -42,6 +44,7 @@ export const FormInput = styled.input`
 `;
 export const Button = styled.button`
   margin-top: 1.5rem;
+  border-radius: 18px;
   padding: 0.5rem 6rem;
   background-color: var(--color-primary);
   border: 2px solid transparent;
@@ -59,11 +62,11 @@ export const PrimaryButton = styled(Button)`
   padding: 0.5rem 8rem;
   background-color: var(--color-secondary-dark);
   color: var(--color-light);
-  &:disabled{
-    cursor:not-allowed;
+  &:disabled {
+    cursor: not-allowed;
   }
-  @media only screen and (max-width:768px){
-    margin-bottom:${props => props.logout ? "3rem" :""}
+  @media only screen and (max-width: 768px) {
+    margin-bottom: ${(props) => (props.logout ? "3rem" : "")};
   }
 `;
 

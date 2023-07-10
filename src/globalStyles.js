@@ -6,7 +6,7 @@ html{
   --color-secondary:#4A3780;
   --color-secondary-dark:#917FB3;
   --color-light:#fff;
-  --color-dark:black;
+  --color-dark:grey;
   --primary-cta:#fff;
   --color-success:#006400
   
