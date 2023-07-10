@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
 html{
   --color-primary:#F1F5F9;
   --color-secondary:#4A3780;
-  --color-secondary-dark:#ca2535;
+  --color-secondary-dark:#917FB3;
   --color-light:#fff;
   --color-dark:black;
   --primary-cta:#fff;

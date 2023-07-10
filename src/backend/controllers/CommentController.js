@@ -1,6 +1,6 @@
 import { Response } from "miragejs";
 import { formatDate, requiresAuth } from "../utils/authUtils";
-import { v4 as uuid } from "uuid";
+// import { v4 as uuid } from "uuid";
 
 /**
  * All the routes related to post comments are present here.

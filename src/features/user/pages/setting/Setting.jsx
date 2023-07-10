@@ -15,53 +15,55 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editUser } from "features/user/userSlice";
 import { logout } from "features/authentication/authSlice";
-import {useDocumentTitle} from "utils/hooks/useDocumentTitle";
-import { Navigate,useNavigate } from "react-router-dom";
+import { useDocumentTitle } from "utils/hooks/useDocumentTitle";
+import { useNavigate } from "react-router-dom";
 
 export const Setting = () => {
-  useDocumentTitle("Settings")
+  useDocumentTitle("Settings");
   const { currentUser } = useSelector((store) => store.auth);
-  const {users,isUpdating} = useSelector(store => store.users)
-  const navigate = useNavigate();
-  const activeUser = users.find(user => user._id === currentUser._id)
-  const [photo,setUserPhoto] = useState(activeUser.userPhoto)
+  const { users, isUpdating } = useSelector((store) => store.users);
+  useNavigate();
+  const activeUser = users.find((user) => user._id === currentUser._id);
+  const [photo, setUserPhoto] = useState(activeUser.userPhoto);
   const [newData, setNewData] = useState({
     firstName: activeUser.firstName,
-    lastName:activeUser.lastName,
+    lastName: activeUser.lastName,
     link: activeUser.link,
     bio: activeUser.bio,
-    userPhoto:activeUser.userPhoto,
+    userPhoto: activeUser.userPhoto,
     email: activeUser.email,
   });
 
-  
-  const { firstName,lastName, link, bio, userPhoto, email } = newData;
+  const { firstName, lastName, link, bio, userPhoto, email } = newData;
   const dispatch = useDispatch();
   const changeHandler = (e) => {
     setNewData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const clickHandler = () =>{
-    if(photo === activeUser.userPhoto){
-      dispatch(editUser(newData))
+  const clickHandler = () => {
+    if (photo === activeUser.userPhoto) {
+      dispatch(editUser(newData));
+    } else {
+      dispatch(editUser({ ...newData, userPhoto: URL.createObjectURL(photo) }));
     }
-    else{
-      dispatch(editUser({...newData,userPhoto:URL.createObjectURL(photo)})) 
-    }
-  }
+  };
   return (
     <Wrapper>
-      
       <Form>
         <ImageWrapper>
-          <ProfileImg src={photo === userPhoto ? photo : URL.createObjectURL(photo)}></ProfileImg>
+          <ProfileImg
+            src={photo === userPhoto ? photo : URL.createObjectURL(photo)}
+          ></ProfileImg>
           <EditBtn htmlFor="picUpdate">
             <EditIcon />
           </EditBtn>
-          <input type="file" onChange={(e)=>setUserPhoto(e.target.files[0])} id="picUpdate" style={{ display: "none" }} />
+          <input
+            type="file"
+            onChange={(e) => setUserPhoto(e.target.files[0])}
+            id="picUpdate"
+            style={{ display: "none" }}
+          />
         </ImageWrapper>
-        <Label htmlFor="firstName">
-          First Name
-        </Label>
+        <Label htmlFor="firstName">First Name</Label>
         <InputField
           id="firstName"
           name="firstName"
@@ -69,9 +71,7 @@ export const Setting = () => {
           value={firstName}
           onChange={(e) => changeHandler(e)}
         ></InputField>
-        <Label htmlFor="lastName">
-          Last Name
-        </Label>
+        <Label htmlFor="lastName">Last Name</Label>
         <InputField
           id="lastName"
           name="lastName"
@@ -92,8 +92,8 @@ export const Setting = () => {
           id="bio"
           type="text"
           name="bio"
-          cols="28"
-          rows="6"
+          cols="40"
+          rows="4"
           value={bio}
           onChange={(e) => changeHandler(e)}
         ></BioInput>
@@ -105,12 +105,24 @@ export const Setting = () => {
           value={link}
           onChange={(e) => changeHandler(e)}
         ></InputField>
-        <PrimaryButton style={{ backgroundColor: "#4A3780"}}  primary onClick={clickHandler} disabled={isUpdating}>Update Profile</PrimaryButton>
-   
+        <PrimaryButton
+          style={{ backgroundColor: "#4A3780", borderRadius: "20px" }}
+          primary
+          onClick={clickHandler}
+          disabled={isUpdating}
+        >
+          Update Profile
+        </PrimaryButton>
       </Form>
       <Form>
-      <h1>Log Out</h1>
-      <PrimaryButton style={{ backgroundColor: "#4A3780"}} logout onClick={()=>dispatch(logout())} >LOG OUT</PrimaryButton>
+        <h1>Log Out</h1>
+        <PrimaryButton
+          style={{ backgroundColor: "#4A3780", borderRadius: "20px" }}
+          logout
+          onClick={() => dispatch(logout())}
+        >
+          LOG OUT
+        </PrimaryButton>
       </Form>
     </Wrapper>
   );

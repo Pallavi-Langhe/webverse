@@ -6,21 +6,18 @@ import {
   InputWrapper,
   InputPost,
 } from "./modalComponent";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { getBgColor, getTextColor } from "utils/functions/getColor";
+import { getTextColor } from "utils/functions/getColor";
 import { useTheme } from "context/theme-context";
 import { AlertToast } from "../toasts";
 import { editPostComment } from "features/home/postsSlice";
-import {toggleEditModal} from "features/singlepost/commentSlice"
+import { toggleEditModal } from "features/singlepost/commentSlice";
 
-export const EditCommentModal = ({
-  postId,
-  comment,
-}) => {
+export const EditCommentModal = ({ postId, comment }) => {
   const { theme } = useTheme();
-  const {editModalOpen} = useSelector((store) => store.comments)
-  console.log(comment.content)
+  const { editModalOpen } = useSelector((store) => store.comments);
+  // console.log(comment.content);
   const [editedComment, setEditedComment] = useState({
     commentData: comment.content,
     postId: postId,
@@ -33,7 +30,7 @@ export const EditCommentModal = ({
     } else {
       dispatch(editPostComment(editedComment));
       setEditedComment((prev) => ({ ...prev, commentData: "" }));
-      dispatch(toggleEditModal(false))
+      dispatch(toggleEditModal(false));
     }
   };
 
@@ -46,14 +43,21 @@ export const EditCommentModal = ({
             : { pointerEvents: "none", opacity: "" }
         }
       >
-        <CloseButton onClick={() => dispatch(toggleEditModal(false))}>X</CloseButton>
+        <CloseButton onClick={() => dispatch(toggleEditModal(false))}>
+          X
+        </CloseButton>
         <InputWrapper>
           <InputPost
             style={{ color: getTextColor(theme) }}
             placeholder="Edit comment......"
             name="commentData"
             value={editedComment.commentData}
-            onChange={(e) => setEditedComment(prev => ({...prev,commentData:e.target.value}))}
+            onChange={(e) =>
+              setEditedComment((prev) => ({
+                ...prev,
+                commentData: e.target.value,
+              }))
+            }
           />
         </InputWrapper>
 

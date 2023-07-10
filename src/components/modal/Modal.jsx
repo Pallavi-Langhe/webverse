@@ -7,13 +7,18 @@ import {
   InputPost,
   EmojiBtn,
   PickerWrapper,
-  InputImage
+  InputImage,
 } from "./modalComponent";
 import addPostImg from "assets/images/addpostImg.webp";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { AlertToast } from "../toasts";
-import { addNewPost, editPost,setEditEmpty,setModalOpen } from "features/home/postsSlice";
+import {
+  addNewPost,
+  editPost,
+  setEditEmpty,
+  setModalOpen,
+} from "features/home/postsSlice";
 import { getBgColor, getTextColor } from "utils/functions/getColor";
 import { useTheme } from "context/theme-context";
 import { useSelector } from "react-redux";
@@ -29,9 +34,8 @@ export const Modal = () => {
     image: null,
   });
 
-
   const postToEdit = useSelector((store) => store?.posts?.postToEdit);
-  const {isModalOpen,isFetching} = useSelector((store) => store.posts)
+  const { isModalOpen, isFetching } = useSelector((store) => store.posts);
 
   const onEmojiClick = (event, emojiObject) => {
     const newData = postData.content + emojiObject.emoji;
@@ -65,7 +69,7 @@ export const Modal = () => {
       })
     );
     setEditData((prev) => ({ ...prev, content: "" }));
-    dispatch(setEditEmpty())
+    dispatch(setEditEmpty());
     dispatch(setModalOpen());
   };
 
@@ -76,17 +80,22 @@ export const Modal = () => {
   return (
     isModalOpen && (
       <ModalWrapper style={{ backgroundColor: getBgColor(theme) }}>
-        <CloseButton onClick={() => {
-          dispatch(setModalOpen());
-          dispatch(setEditEmpty())
-        }}>X</CloseButton>
+        <CloseButton
+          onClick={() => {
+            dispatch(setModalOpen());
+            dispatch(setEditEmpty());
+          }}
+        >
+          X
+        </CloseButton>
         {imageToPost.isShow === true && (
           <img
+            alt="user-post"
             className="postImg"
             src={URL.createObjectURL(imageToPost.image)}
           />
         )}
-       
+
         <InputWrapper>
           <InputPost
             style={{ color: getTextColor(theme) }}
@@ -110,18 +119,20 @@ export const Modal = () => {
         <InputImage
           type="file"
           id="postData"
-          onChange={(e) => 
+          onChange={(e) =>
             setImageToPost((prev) => ({
-                  ...prev,
-                  isShow: true,
-                  image: e.target.files[0],
-                }))
+              ...prev,
+              isShow: true,
+              image: e.target.files[0],
+            }))
           }
         />
-       {!postToEdit && <label htmlFor="postData">
-          {" "}
-          <PostImageButton src={addPostImg} />
-        </label>}
+        {!postToEdit && (
+          <label htmlFor="postData">
+            
+            <PostImageButton src={addPostImg} />
+          </label>
+        )}
         {postToEdit ? (
           <Button addpostBtn onClick={editClickHandler} disabled={isFetching}>
             Edit
