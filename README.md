@@ -10,7 +10,7 @@
 
 ```
 $ git clone https://github.com/Pallavi-Langhe/webverse.git
-$ cd book_shelf
+$ cd webverse
 $ npm install
 $ npm start
 ```
