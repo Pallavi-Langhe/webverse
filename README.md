@@ -40,10 +40,11 @@ User friendly toast using toastify
 - Javascript
 - ReactJs
 - ReactRouter
+- React hooks
 - Context API
 - font-awesome
 - mockbee
-- vercel
+- netlify
 
 
 ## **Demo -**
