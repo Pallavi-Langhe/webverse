@@ -6,7 +6,7 @@
     
 </div>
 
-## **How to install the bookshelf and run locally ?**
+## **How to install the Webverse and run locally ?**
 
 ```
 $ git clone https://github.com/Pallavi-Langhe/webverse.git
