@@ -22,8 +22,7 @@ $ npm start
   - User logout
   - Demo login
 - Landing Page
-- Have simple but elegant design
-- Login and sign up functionality
+- Simple but elegant design
 - Protected and public routes
 - Single Post Page
 - Add, Edit delete post functionality
