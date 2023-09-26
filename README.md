@@ -2,7 +2,7 @@
   
   ![webverse](https://github.com/Pallavi-Langhe/webverse/assets/91686147/3c72f754-d143-4d18-8576-3b7a90b30d38)
 
-  # [Wevverse is a social media application for developers.](https://webverse-app.netlify.app/)
+  # [Webverse is a social media application for developers.](https://webverse-app.netlify.app/)
     
 </div>
 
